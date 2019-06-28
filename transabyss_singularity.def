@@ -1,0 +1,17 @@
+BootStrap: docker
+From: ubuntu:16.04
+
+%post
+	apt-get update
+	apt-get install -y wget gcc g++ make pkg-config parallel git libxml2-dev zlib1g-dev  python python-pip python-dev build-essential libboost-all-dev libsparsehash-dev
+	wget -O /bin/blat http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/blat
+	chmod 777 /bin/blat
+	pip install python-igraph 
+	wget https://github.com/bcgsc/abyss/releases/download/2.1.5/abyss-2.1.5.tar.gz
+	tar -xzf abyss-2.1.5.tar.gz
+	cd abyss-2.1.5
+	./configure
+	make
+	make install
+%label
+	Author swamsaur
